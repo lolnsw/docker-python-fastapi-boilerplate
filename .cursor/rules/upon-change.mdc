@@ -1,0 +1,9 @@
+---
+description: WHen ask you for a change
+globs: 
+alwaysApply: false
+---
+
+# Your rule content
+
+- Do not update the readme unless I ask you explicitely
