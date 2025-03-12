@@ -24,9 +24,8 @@ jobs:
           pip install -e ".[test]"
           
       - name: Run tests
-        run: |
-          cd backend
-          pytest
+        working-directory: ./backend
+        run: pytest -v
 
   build:
     needs: test

@@ -19,8 +19,9 @@ test = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["backend/tests"]
 python_files = ["test_*.py"]
+pythonpath = ["."]
 
 [tool.hatch.build.targets.wheel]
-packages = ["backend"]
+packages = ["app"]
