@@ -1,3 +1,4 @@
+
 2. Install the package and dependencies:
 ```bash
 pip install -e .
@@ -11,12 +12,12 @@ pip install -e ".[test]"
 ### Docker Setup
 1. Build the Docker image:
 ```bash
-docker build -t sherparr .
+docker build -t simple-api .
 ```
 
 2. Run the container:
 ```bash
-docker run -d -p 8000:8000 sherparr
+docker run -d -p 8000:8000 simple-api
 ```
 
 ## Running the Application
@@ -59,16 +60,16 @@ pytest
 
 ### Build for multiple architectures
 ```bash
-docker buildx build --platform linux/amd64,linux/arm64 -t sherparr .
+docker buildx build --platform linux/amd64,linux/arm64 -t simple-api .
 ```
 
 ### Development Build
 ```bash
 # Build with development features
-docker build -t sherparr:dev .
+docker build -t simple-api:dev .
 
 # Run with hot reload
-docker run -d -p 8000:8000 -v $(pwd)/backend:/app sherparr:dev
+docker run -d -p 8000:8000 -v $(pwd)/backend:/app simple-api:dev
 ```
 
 The Dockerfile features:
@@ -81,8 +82,8 @@ The Dockerfile features:
 7. Clear separation of build and runtime stages
 
 To use the Docker setup:
-1. Build the image: `docker build -t sherparr .`
-2. Run the container: `docker run -d -p 8000:8000 sherparr`
+1. Build the image: `docker build -t simple-api .`
+2. Run the container: `docker run -d -p 8000:8000 simple-api`
 3. Access the API at http://localhost:8000
 
 The application will be accessible on port 8000 both locally and in Docker.

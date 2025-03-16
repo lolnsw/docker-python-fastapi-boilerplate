@@ -1,28 +1,22 @@
 # Use multi-stage build for smaller final image
-FROM lscr.io/linuxserver/rsnapshot:latest as builder
+FROM python:3.9-slim as builder
 
 # Set working directory
 WORKDIR /app
-
-# Install Python and required build tools
-RUN apk add --no-cache python3 py3-pip python3-dev build-base
 
 # Copy only requirements first to leverage Docker cache
 COPY backend/pyproject.toml .
 
 # Install build dependencies and create virtual environment
-RUN python3 -m venv /opt/venv && \
+RUN python -m venv /opt/venv && \
     /opt/venv/bin/pip install --no-cache-dir pip -U && \
     /opt/venv/bin/pip install --no-cache-dir .
 
 # Final stage
-FROM lscr.io/linuxserver/rsnapshot:latest
+FROM python:3.9-slim
 
 # Set working directory
 WORKDIR /app
-
-# Install Python
-RUN apk add --no-cache python3
 
 # Copy virtual environment from builder
 COPY --from=builder /opt/venv /opt/venv
